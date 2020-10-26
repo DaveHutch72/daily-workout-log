@@ -7,12 +7,32 @@ class ApplicationController < Sinatra::Base
     set :views, 'app/views'
   end
 
+  helpers do
+    def logged_in?
+      !!session[:user_id]
+    end
+
+    def current_user
+      User.find(session[:user_id])
+    end
+  end
+
   get "/" do
     erb :welcome
   end
 
   get "/signup" do
     erb :signup
+  end
+
+  post "/signup" do
+    user = User.new(:username => params[:username], :password => params[:password])
+    
+    if user.username != "" && user.save
+      redirect "/login"
+    else
+      redirect "/failure"
+    end
   end
 
 end
