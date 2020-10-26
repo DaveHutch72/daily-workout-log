@@ -1,5 +1,5 @@
 class UsersController < ApplicationController
-
+    require 'pry'
   get "/" do
     erb :welcome
   end
@@ -9,12 +9,13 @@ class UsersController < ApplicationController
   end
 
   post "/signup" do
+    binding.pry
     user = User.new(:username => params[:username], :password => params[:password])
     
     if user.username != "" && user.save
       redirect "/login"
     else
-      redirect "/failure"
+      redirect "/fail_login"
     end
   end
 
@@ -23,14 +24,19 @@ class UsersController < ApplicationController
   end
 
   post "/login" do
+    binding.pry
     user = User.find_by(:username => params[:username])
 
     if user && user.authenticate(params[:password])
       session[:user_id] = user.id
       redirect "/account"
     else
-      redirect "/failure"
+      redirect "/fail_login"
     end
+  end
+
+  get "/fail_login" do
+    erb :'users/fail_login'
   end
 
 end

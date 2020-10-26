@@ -1,11 +1,7 @@
 class CreateDays < ActiveRecord::Migration
-  def up
+  def change
     create_table :days do |t|
-      t.string :day
+      t.string :weekday
     end
-  end
-
-  def down
-    drop_table :users
   end
 end
