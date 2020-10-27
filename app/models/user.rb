@@ -1,6 +1,5 @@
 class User < ActiveRecord::Base
     has_secure_password
 
-    has_many :days
-    has_many :workouts, :through => :days
+    has_many :workouts
 end

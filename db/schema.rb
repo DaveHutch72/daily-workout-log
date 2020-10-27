@@ -11,11 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20201026163122) do
-
-  create_table "days", force: :cascade do |t|
-    t.string "weekday"
-  end
+ActiveRecord::Schema.define(version: 20201026161910) do
 
   create_table "users", force: :cascade do |t|
     t.string "username"
@@ -26,6 +22,7 @@ ActiveRecord::Schema.define(version: 20201026163122) do
     t.string  "name"
     t.string  "type"
     t.integer "time"
+    t.integer "user_id"
   end
 
 end
