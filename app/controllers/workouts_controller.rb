@@ -5,6 +5,15 @@ class UsersController < ApplicationController
         erb :'workouts/index'
     end
 
+    get "/workouts/new" do
+        @users = User.all
+        erb :'workouts/new'
+    end
+
+    post "/workouts" do
+        binding.pry
+    end
+
     get "/workouts/:id" do
         @workouts = Workout.find_by(id: params[:id])
 
