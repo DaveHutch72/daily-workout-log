@@ -1,4 +1,4 @@
-class UsersController < ApplicationController
+class WorkoutsController < ApplicationController
 
     get "/workouts" do
         @workouts = Workout.all
@@ -6,12 +6,18 @@ class UsersController < ApplicationController
     end
 
     get "/workouts/new" do
-        @users = User.all
         erb :'workouts/new'
     end
 
     post "/workouts" do
+        
+        workout = Workout.new(:name => params[:name], :workout_type => params[:workout_type], :time => params[:time])
         binding.pry
+        if workout.save
+            redirect "/workouts/#{workout.id}"
+        else
+            redirect "/workouts/new"
+        end
     end
 
     get "/workouts/:id" do
@@ -23,5 +29,11 @@ class UsersController < ApplicationController
             redirect '/workouts'
         end
     end
+
+    get '/account' do
+        binding.pry
+          @user = User.find_by(id: session[:user_id])
+          erb :'workouts/account'
+      end
 
 end

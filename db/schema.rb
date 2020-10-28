@@ -20,7 +20,7 @@ ActiveRecord::Schema.define(version: 20201026161910) do
 
   create_table "workouts", force: :cascade do |t|
     t.string  "name"
-    t.string  "type"
+    t.string  "workout_type"
     t.integer "time"
     t.integer "user_id"
   end
