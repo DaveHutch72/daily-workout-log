@@ -1,7 +1,10 @@
-<h1>All Workouts</h1>
+<h1>These are your workouts, <%= current_user.username %></h1>
 
 <% @workouts.each do |w|%>
     <p><a href="/workouts/<%= w.id%>"><%= w.name%></a></p>
 <% end%>
 <br>
 <a href="/workouts/new">Create New Workout</a>
+<br>
+<br>
+<button><a href="/logout">Logout</a></button>

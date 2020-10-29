@@ -1,13 +1,15 @@
-<h2><%= @workouts.name %></h2>
+<h2><%= @workout.name %></h2>
 <br>
-<p><%= @workouts.workout_type %></p>
+<p><%= @workout.workout_type %></p>
 <br>
-<p><%= @workouts.time %></p>
+<p><%= @workout.time %> minutes</p>
 <br>
-<a href="/workouts/<%= @workout.id %>/edit">Edit</a>
+<button><a href="/workouts/<%= @workout.id %>/edit">Edit</a></button>
 <form action="/workouts/<%= @workout.id %>" method="post">
     <input type="hidden" name="_method" value="delete">
     <input class="submit" type="submit" value="Delete">
 </form>
+<button><a href="/workouts">Full List</a></button>
 <br>
-<a href="/workouts">Full List</a>
+<br>
+<button><a href="/logout">Logout</a></button>

@@ -20,7 +20,7 @@ class WorkoutsController < ApplicationController
     post "/workouts" do
         
         workout = current_user.workouts.build(params)
-        binding.pry
+        #binding.pry
         if workout.save
             redirect "/workouts/#{workout.id}"
         else
@@ -59,7 +59,7 @@ class WorkoutsController < ApplicationController
         if logged_in?
             @workout = current_user.workouts.find_by(id: params[:id])
 
-            if @workouts
+            if @workout
                 erb :'workouts/show'
             else
                 redirect '/workouts'
@@ -76,8 +76,8 @@ class WorkoutsController < ApplicationController
     delete '/workouts/:id' do
         if logged_in?
             @workouts = Workout.find_by(id: params[:id])
-            if @post
-                @post.destroy
+            if @workouts
+                @workouts.destroy
             end
             redirect '/workouts'
         else
