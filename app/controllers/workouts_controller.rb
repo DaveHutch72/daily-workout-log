@@ -29,6 +29,10 @@ class WorkoutsController < ApplicationController
         workout = Workout.find_by(id: params[:id])
 
         if workout.update(name: params[:name], workout_type: params[:workout_type], time: params[:time])
+            redirect "/workouts/#{workout.id}"
+        else
+            redirect "/workouts/#{workout.id}/edit"
+        end
     end
 
     get "/workouts/:id" do
