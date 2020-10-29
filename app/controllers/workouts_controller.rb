@@ -21,11 +21,14 @@ class WorkoutsController < ApplicationController
     end
 
     get "/workouts/:id/edit" do
-        
+        @workout = Workout.find_by(params)
+        erb :'workouts/edit'
     end
 
     patch '/posts/:id' do
-        binding.pry
+        workout = Workout.find_by(id: params[:id])
+
+        if workout.update(name: params[:name], workout_type: params[:workout_type], time: params[:time])
     end
 
     get "/workouts/:id" do
