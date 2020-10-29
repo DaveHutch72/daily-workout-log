@@ -20,6 +20,14 @@ class WorkoutsController < ApplicationController
         end
     end
 
+    get "/workouts/:id/edit" do
+        
+    end
+
+    patch '/posts/:id' do
+        binding.pry
+    end
+
     get "/workouts/:id" do
         @workouts = Workout.find_by(id: params[:id])
 
