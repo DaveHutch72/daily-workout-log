@@ -4,6 +4,10 @@
 <br>
 <p><%= @workouts.time %></p>
 <br>
-
+<a href="/workouts/<%= @workout.id %>/edit">Edit</a>
+<form action="/workouts/<%= @workout.id %>" method="post">
+    <input type="hidden" name="_method" value="delete">
+    <input class="submit" type="submit" value="Delete">
+</form>
 <br>
 <a href="/workouts">Full List</a>

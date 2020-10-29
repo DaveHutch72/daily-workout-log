@@ -1,15 +1,15 @@
 class SessionsController < ApplicationController
     get "/login" do
-        erb :login  
+        erb :'sessions/login'  
     end
     
     post "/login" do
-        user = User.find_by(:username => params[:username])
+        user = User.find_by(username: params[:username])
           #binding.pry
         if user && user.authenticate(params[:password])
           #binding.pry
           session[:user_id] = user.id
-          redirect "/account"
+          redirect "/workouts"
         else
           redirect "/fail_login"
         end
@@ -17,6 +17,6 @@ class SessionsController < ApplicationController
   
     get "/logout" do
         session.clear
-        redirect "/"
+        redirect "/login"
     end
 end
