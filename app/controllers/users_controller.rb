@@ -17,7 +17,8 @@ class UsersController < ApplicationController
       if user.username != "" && user.save
         redirect "/login"
       else
-        redirect "/fail_login"
+        @error = "It looks like you were missing something. Please make sure you have filled out both boxes."
+        erb :"users/signup"
       end
     end
 end

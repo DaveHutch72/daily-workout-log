@@ -11,7 +11,8 @@ class SessionsController < ApplicationController
           session[:user_id] = user.id
           redirect "/workouts"
         else
-          redirect "/fail_login"
+          @error = "Invalid credentials"
+          erb :'sessions/login'
         end
     end
   
