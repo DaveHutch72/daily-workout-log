@@ -42,7 +42,7 @@ class WorkoutsController < ApplicationController
            
     end
 
-    patch '/posts/:id' do
+    patch '/workouts/:id' do
         workout = current_user.workouts.find_by(id: params[:id])
         if workout
             if workout.update(name: params[:name], workout_type: params[:workout_type], time: params[:time])

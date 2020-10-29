@@ -9,11 +9,6 @@ class ApplicationController < Sinatra::Base
     set :session_secret, 'test'
   end
 
-  not_found do
-    status 404
-    erb :error
-  end
-
   helpers do
     def logged_in?
       !!session[:user_id]
