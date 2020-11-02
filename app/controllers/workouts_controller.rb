@@ -10,11 +10,8 @@ class WorkoutsController < ApplicationController
     end
 
     get "/workouts/new" do
-        if logged_in?
-            erb :'workouts/new'
-        else
-            redirect '/login'
-        end    
+        please_redirect
+        erb:'workouts/new'
     end
 
     post "/workouts" do
@@ -65,17 +62,13 @@ class WorkoutsController < ApplicationController
                 redirect '/workouts'
             end
         else
+            redirect '/workouts'
         end
-    end
-
-    get '/account' do
-          @user = User.find_by(id: session[:user_id])
-          erb :'workouts/account'
     end
 
     delete '/workouts/:id' do
         if logged_in?
-            @workouts = Workout.find_by(id: params[:id])
+            @workouts = current_user.find_by(id: params[:id])
             if @workouts
                 @workouts.destroy
             end
